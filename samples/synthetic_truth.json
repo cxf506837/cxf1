@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic field-level truth for portfolio accuracy demonstrations only.",
+  "truth_rows": [
+    {"order_id": "ODW-1001", "sku": "PEN-MULTI-5", "engraving": "Mira", "front_font": "Font 2", "bag_color": "Blue"},
+    {"order_id": "ODW-1002", "sku": "KEY-LEATHER-B", "engraving": "Narelle", "front_font": "Font 5", "bag_color": "Pink"},
+    {"order_id": "ODW-1003", "sku": "BOX-RING-WOOD", "engraving": "Mr. & Mrs. Kitt, 06.06.26", "front_font": "Font 2", "bag_color": "Grey"},
+    {"order_id": "ODW-1004", "sku": "MUG-CERAMIC-01", "engraving": "Meet you at the bar", "front_font": "Font 3", "bag_color": "Blue"}
+  ]
+}
+

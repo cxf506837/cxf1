@@ -1,0 +1,35 @@
+[
+  {
+    "order_id": "ODW-1001",
+    "sku": "PEN-MULTI-5",
+    "quantity": "5 Pens",
+    "delivery_name": "Avery Stone",
+    "delivery_address": "1810 Sample Drive, Oxnard, CA 93036, United States",
+    "personalization": "Mira, Font 2\nBlue bag"
+  },
+  {
+    "order_id": "ODW-1002",
+    "sku": "KEY-LEATHER-B",
+    "quantity": "1",
+    "delivery_name": "Daddy K??",
+    "delivery_address": "42 Harbor Lane, Austin, TX 73301, United States",
+    "personalization": "Narelle\nFont 5\nPink bag"
+  },
+  {
+    "order_id": "ODW-1003",
+    "sku": "BOX-RING-WOOD",
+    "quantity": "1",
+    "delivery_name": "Rowan Hale",
+    "delivery_address": "700 Cedar Street, Denver, CO 80202, United States",
+    "personalization": "1) Mr. & Mrs. Kitt, 06.06.26 3) Grey bag"
+  },
+  {
+    "order_id": "ODW-1004",
+    "sku": "MUG-CERAMIC-01",
+    "quantity": "1",
+    "delivery_name": "Casey Reed",
+    "delivery_address": "11 North Avenue, Seattle, WA 98101, United States",
+    "personalization": "Meet you at the bar\nFont 3"
+  }
+]
+
