@@ -1,9 +1,9 @@
 # AI OrderOps Workbench
 
-**Online recruiter demo:** https://ai-orderops-workbench.chenxifang529.chatgpt.site  
-**GitHub project:** https://github.com/CXF506837/CXF1
+**AI OrderOps Workbench 在线演示：** https://ai-orderops-workbench.chenxifang529.chatgpt.site  
+**AI OrderOps Workbench GitHub 项目：** https://github.com/CXF506837/CXF1
 
-AI OrderOps Workbench is a sanitized portfolio demo for an AI-assisted order processing system.
+AI OrderOps Workbench is a sanitized portfolio demo for a Codex-assisted order processing system.
 It turns order PDFs and ZIP batches into traceable Excel outputs while separating automatic release,
 manual review, field quality checks, and rule learning.
 
