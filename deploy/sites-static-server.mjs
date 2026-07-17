@@ -1,62 +1,28 @@
-import { createReadStream } from "node:fs";
-import { stat } from "node:fs/promises";
-import { createServer } from "node:http";
-import { extname, join, normalize } from "node:path";
-
-const root = join(process.cwd(), "dist", "static");
-const port = Number(process.env.PORT || 3000);
-
-const types = new Map([
-  [".html", "text/html; charset=utf-8"],
-  [".js", "application/javascript; charset=utf-8"],
-  [".css", "text/css; charset=utf-8"],
-  [".json", "application/json; charset=utf-8"],
-  [".svg", "image/svg+xml"],
-  [".png", "image/png"],
-  [".jpg", "image/jpeg"],
-  [".jpeg", "image/jpeg"],
-  [".webp", "image/webp"],
-  [".ico", "image/x-icon"],
-  [".txt", "text/plain; charset=utf-8"]
-]);
-
-function safePath(requestPath) {
-  const decoded = decodeURIComponent(requestPath.split("?")[0] || "/");
-  const normalized = normalize(decoded).replace(/^(\.\.[/\\])+/, "");
-  return normalized === "/" ? "/index.html" : normalized;
+function assetRequest(request, pathname) {
+  const url = new URL(request.url);
+  url.pathname = pathname;
+  return new Request(url, request);
 }
 
-function htmlFallbackPath(requestPath) {
-  const clean = safePath(requestPath).replace(/^[/\\]/, "");
-  if (clean.endsWith(".html") || clean.includes(".")) {
-    return clean;
-  }
-  return `${clean}.html`;
+async function tryAsset(request, env, pathname) {
+  if (!env?.ASSETS?.fetch) return null;
+  const response = await env.ASSETS.fetch(assetRequest(request, pathname));
+  return response.status === 404 ? null : response;
 }
 
-async function resolveFile(requestPath) {
-  const candidates = [
-    safePath(requestPath).replace(/^[/\\]/, ""),
-    htmlFallbackPath(requestPath),
-    "_not-found.html"
-  ];
+function fallbackPaths(pathname) {
+  if (pathname === "/") return ["/index.html"];
+  if (pathname.includes(".")) return [pathname];
+  return [pathname, `${pathname}.html`, "/_not-found.html"];
+}
 
-  for (const candidate of candidates) {
-    const full = join(root, candidate);
-    if (!full.startsWith(root)) continue;
-    try {
-      const info = await stat(full);
-      if (info.isFile()) return full;
-    } catch {
-      // Try the next candidate.
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    for (const pathname of fallbackPaths(url.pathname)) {
+      const response = await tryAsset(request, env, pathname);
+      if (response) return response;
     }
+    return new Response("Not found", { status: 404 });
   }
-  return join(root, "_not-found.html");
-}
-
-createServer(async (request, response) => {
-  const file = await resolveFile(request.url || "/");
-  const ext = extname(file);
-  response.setHeader("content-type", types.get(ext) || "application/octet-stream");
-  createReadStream(file).pipe(response);
-}).listen(port, "0.0.0.0");
+};
