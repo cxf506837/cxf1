@@ -40,7 +40,13 @@ const forbidden = [
 const required = [
   "AI OrderOps Workbench",
   "生成脱敏演示任务",
-  "在线演示",
+  "真实后端演示",
+  "运行真实脱敏任务",
+  "访问密码",
+  "PDF 或 ZIP",
+  "ORDEROPS_BACKEND_URL",
+  "/api/live",
+  "下载真实 Excel",
   "人工审核",
   "规则沉淀",
   "样例 Excel"

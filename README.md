@@ -105,6 +105,25 @@ Stop services:
 scripts\stop-dev-windows.cmd
 ```
 
+## Live Recruiter Demo
+
+If you want recruiters to operate a real backend flow instead of only viewing the static portfolio demo,
+run the local live demo on your own computer:
+
+```bat
+scripts\start-live-recruiter-demo.cmd
+```
+
+Open:
+
+- Frontend: <http://127.0.0.1:3000>
+- Backend health: <http://127.0.0.1:8000/api/health>
+- Default password: `demo-pass`
+
+The frontend uses `/api/live` as a same-origin proxy to the FastAPI backend, so a public tunnel only
+needs to expose the frontend port `3000`. See `docs/live-recruiter-demo.md` for the full sharing and
+safety checklist.
+
 ## Verification
 
 Backend tests:

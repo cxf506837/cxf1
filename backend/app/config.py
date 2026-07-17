@@ -11,7 +11,7 @@ class Settings:
     storage_root: Path = Path(os.getenv("ORDEROPS_STORAGE_ROOT", "storage"))
     openai_enabled: bool = bool(os.getenv("OPENAI_API_KEY"))
     mock_model_enabled: bool = os.getenv("MOCK_MODEL_ENABLED", "true").lower() == "true"
+    demo_access_password: str | None = os.getenv("ORDEROPS_DEMO_PASSWORD") or None
 
 
 settings = Settings()
-

@@ -1,6 +1,6 @@
 import { AppShell } from "../../../components/AppShell";
+import { ExcelDownloadButton } from "../../../components/ExcelDownloadButton";
 import { MetricCard } from "../../../components/MetricCard";
-import { SampleDownloadButton } from "../../../components/SampleDownloadButton";
 import { fetchJob } from "../../../lib/api";
 import { DEMO_JOBS } from "../../../lib/demo-data";
 
@@ -27,7 +27,7 @@ export default async function JobPage({ params }: { params: Promise<{ id: string
                   {job.job_id} · {job.created_at} · {job.source_files.join(" / ")}
                 </p>
               </div>
-              <SampleDownloadButton job={job} />
+              <ExcelDownloadButton job={job} />
             </div>
           </div>
 

@@ -4,10 +4,11 @@ import json
 from pathlib import Path
 from typing import Annotated
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import Depends, FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
+from .auth import require_demo_access
 from .config import settings
 from .demo_data import build_synthetic_pdf_text, synthetic_sku_master
 from .excel_writer import write_excel_report
@@ -38,11 +39,12 @@ def health() -> dict:
         "storage_root": str(settings.storage_root),
         "mock_model_enabled": settings.mock_model_enabled,
         "openai_configured": settings.openai_enabled,
+        "demo_password_enabled": bool(settings.demo_access_password),
     }
 
 
 @app.post("/api/demo")
-def create_demo_job() -> dict:
+def create_demo_job(_: None = Depends(require_demo_access)) -> dict:
     result = process_order_text(
         build_synthetic_pdf_text(),
         sku_master=synthetic_sku_master(),
@@ -58,6 +60,7 @@ async def create_job(
     file: Annotated[UploadFile, File()],
     job_name: Annotated[str | None, Form()] = None,
     openai_api_key: Annotated[str | None, Form()] = None,
+    _: None = Depends(require_demo_access),
 ) -> dict:
     # The key is intentionally accepted only for request-time use. This demo
     # does not persist or log it.
@@ -88,7 +91,7 @@ def get_job(job_id: str) -> dict:
 
 
 @app.get("/api/jobs/{job_id}/download")
-def download_job(job_id: str) -> FileResponse:
+def download_job(job_id: str, _: None = Depends(require_demo_access)) -> FileResponse:
     job = store.get(job_id)
     if job is None:
         raise HTTPException(status_code=404, detail="任务不存在")
@@ -99,7 +102,7 @@ def download_job(job_id: str) -> FileResponse:
 
 
 @app.post("/api/reviews")
-def save_review(review: ReviewInput) -> dict:
+def save_review(review: ReviewInput, _: None = Depends(require_demo_access)) -> dict:
     job = store.get(review.job_id)
     if job is None:
         raise HTTPException(status_code=404, detail="任务不存在")
@@ -122,7 +125,7 @@ def list_rules() -> dict:
 
 
 @app.post("/api/rules/decision")
-def decide_rule(decision: RuleDecision) -> dict:
+def decide_rule(decision: RuleDecision, _: None = Depends(require_demo_access)) -> dict:
     # Full rule persistence is intentionally conservative in the demo. The API
     # records the decision separately instead of mutating historical job data.
     job = store.get(decision.job_id)
@@ -150,4 +153,3 @@ def _process_single_upload(file_name: str, content: bytes, job_name: str | None)
 def _write_report(result) -> Path:
     path = settings.storage_root / "jobs" / result.job_id / f"{result.job_name}_order_output.xlsx"
     return write_excel_report(result, path)
-
