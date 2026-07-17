@@ -2,9 +2,8 @@ import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
 import { createServer } from "node:http";
 import { extname, join, normalize } from "node:path";
-import { fileURLToPath } from "node:url";
 
-const root = fileURLToPath(new URL("../static/", import.meta.url));
+const root = join(process.cwd(), "dist", "static");
 const port = Number(process.env.PORT || 3000);
 
 const types = new Map([
