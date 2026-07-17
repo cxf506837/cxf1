@@ -24,9 +24,11 @@ function copyDir(source, target) {
 
 rmSync(distRoot, { recursive: true, force: true });
 mkdirSync(join(distRoot, "server"), { recursive: true });
+mkdirSync(join(distRoot, ".openai"), { recursive: true });
 mkdirSync(join(staticRoot, "_next"), { recursive: true });
 
 copyFileSync(join(repoRoot, "deploy", "sites-static-server.mjs"), join(distRoot, "server", "index.js"));
+copyFileSync(join(repoRoot, ".openai", "hosting.json"), join(distRoot, ".openai", "hosting.json"));
 copyDir(join(frontendRoot, ".next", "static"), join(staticRoot, "_next", "static"));
 
 if (existsSync(join(frontendRoot, "public"))) {
