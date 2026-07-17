@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const nav = [
   ["工作台", "/"],
+  ["数据证据", "/evidence"],
   ["质量看板", "/quality"],
   ["人工审核", "/review"],
   ["规则沉淀", "/rules"],

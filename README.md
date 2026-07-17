@@ -12,6 +12,13 @@ to use in a private GitHub portfolio or a personal case-study page.
 
 ## Recruiter Quick Start
 
+This portfolio now has two recruiter-facing demo modes:
+
+| Mode | Link / Access | What it proves |
+| --- | --- | --- |
+| 安全公开版 | https://ai-orderops-workbench.chenxifang529.chatgpt.site | Recruiters can quickly inspect the product flow, quality board, review queue, rule learning, and export preview without setup. |
+| 真实可操作版 | Run `scripts\start-live-recruiter-demo.cmd` on your computer, then share the temporary tunnel URL and password. | Recruiters can trigger the real FastAPI backend, upload sanitized PDF/ZIP files, generate a real `.xlsx`, and download it. |
+
 The public demo is designed for fast review without local setup:
 
 1. Open the online demo link above.
@@ -21,6 +28,21 @@ The public demo is designed for fast review without local setup:
 The online demo runs on synthetic data and does not require an API key, backend server, or file upload.
 It is intentionally not a production order-processing endpoint; the full local version below keeps the
 Next.js frontend, FastAPI backend, Docker Compose setup, tests, and sample data for technical review.
+
+## Evidence Metrics
+
+The demo includes an evidence page at `/evidence`. These numbers are synthetic portfolio proof points,
+not customer performance claims:
+
+| Metric | Meaning |
+| --- | --- |
+| 120 条合成订单行 | Synthetic order rows used for portfolio storytelling and regression examples. |
+| 600+ 字段裁决 | Field-level decisions across SKU, quantity, engraving, bag color, font, address, and exception handling. |
+| 2 种演示形态 | Safe public demo plus real local-backend demo. |
+| 4 类质量证据 | Frontend contract test, Next.js build, backend unittest, and repository safety scan. |
+
+The real local demo has also been smoke-tested through the same-origin `/api/live` proxy by calling
+`POST /api/live/demo` and receiving a backend-generated job ID.
 
 ## Why This Project Exists
 
