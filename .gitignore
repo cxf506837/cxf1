@@ -6,6 +6,7 @@ node_modules/
 dist/
 build/
 .venv/
+.sites-archive/
 __pycache__/
 *.egg-info/
 *.pyc
