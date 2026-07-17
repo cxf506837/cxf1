@@ -2,7 +2,7 @@
   "name": "ai-orderops-workbench-site",
   "private": true,
   "scripts": {
-    "build": "npm --prefix frontend install && npm --prefix frontend run build",
-    "start": "npm --prefix frontend run start"
+    "build": "npm --prefix frontend install && npm --prefix frontend run build && node deploy/build-sites-dist.mjs",
+    "start": "node dist/server/index.js"
   }
 }
