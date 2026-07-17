@@ -1,11 +1,26 @@
 # AI OrderOps Workbench
 
+**Online recruiter demo:** [ai-orderops-workbench.chenxifang529.chatgpt.site](https://ai-orderops-workbench.chenxifang529.chatgpt.site)  
+**GitHub project:** [github.com/CXF506837/CXF1](https://github.com/CXF506837/CXF1)
+
 AI OrderOps Workbench is a sanitized portfolio demo for an AI-assisted order processing system.
 It turns order PDFs and ZIP batches into traceable Excel outputs while separating automatic release,
 manual review, field quality checks, and rule learning.
 
 This repository is not the client delivery repository. It contains only synthetic data and is safe
 to use in a private GitHub portfolio or a personal case-study page.
+
+## Recruiter Quick Start
+
+The public demo is designed for fast review without local setup:
+
+1. Open the online demo link above.
+2. Click **生成脱敏演示任务**.
+3. Review the task detail page, quality board, manual review queue, rule-learning page, and export preview.
+
+The online demo runs on synthetic data and does not require an API key, backend server, or file upload.
+It is intentionally not a production order-processing endpoint; the full local version below keeps the
+Next.js frontend, FastAPI backend, Docker Compose setup, tests, and sample data for technical review.
 
 ## Why This Project Exists
 
