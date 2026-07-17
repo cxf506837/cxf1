@@ -1,4 +1,4 @@
-const steps = ["上传", "解析", "规则命中", "证据裁决", "质量检测", "导出"];
+const steps = ["输入", "解析", "规则命中", "证据裁决", "质量审核", "导出"];
 
 export function Timeline() {
   return (
@@ -15,4 +15,3 @@ export function Timeline() {
     </div>
   );
 }
-

@@ -4,8 +4,8 @@ const nav = [
   ["工作台", "/"],
   ["质量看板", "/quality"],
   ["人工审核", "/review"],
-  ["规则中心", "/rules"],
-  ["系统设置", "/settings"]
+  ["规则沉淀", "/rules"],
+  ["系统说明", "/settings"]
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -16,7 +16,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="mb-8">
             <div className="text-xs font-semibold uppercase tracking-[0.28em] text-muted">Portfolio Demo</div>
             <div className="mt-3 text-xl font-black tracking-tight">AI OrderOps</div>
-            <p className="mt-2 text-sm leading-6 text-muted">脱敏订单处理工作台，展示解析、审核、规则沉淀和质量闭环。</p>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              面向招聘方的脱敏在线演示：展示订单解析、质量审核、规则沉淀和结果导出，不包含真实客户数据。
+            </p>
           </div>
           <nav className="grid gap-2">
             {nav.map(([label, href]) => (
@@ -30,7 +32,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             ))}
           </nav>
           <div className="mt-8 rounded-2xl border border-line bg-white/70 p-3 text-xs leading-5 text-muted">
-            默认使用模拟模型，不保存密钥，不包含客户真实数据。
+            公开 Demo 默认使用模拟模型与合成订单。本地完整版保留 FastAPI、Docker、PDF/ZIP 上传和 Excel 导出能力。
           </div>
         </aside>
         <main className="min-w-0">{children}</main>
@@ -38,4 +40,3 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-
