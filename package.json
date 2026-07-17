@@ -1,9 +1,8 @@
 {
   "name": "ai-orderops-workbench-site",
   "private": true,
-  "packageManager": "pnpm@11.7.0",
   "scripts": {
-    "build": "pnpm --dir frontend build",
-    "start": "pnpm --dir frontend start"
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "start": "npm --prefix frontend run start"
   }
 }
